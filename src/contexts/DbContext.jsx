@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { redirect } from 'react-router-dom';
 import { supabase } from '../../sbs'
 
 export const DbContext = React.createContext()
 
 export const DbContextProvider = ( { children } ) => {
+  const categories = [ 'BUZOS', 'REMERITAS-TOPS', 'JEANS', 'SHORT-MINIS' ]
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [isLogged, setIsLogged] = useState(false)
@@ -48,15 +48,11 @@ export const DbContextProvider = ( { children } ) => {
   }
   
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (ev) => {
     userLog()
+    ev.preventDefault()
   }
   
-  useEffect(() => {
-    if (isLogged) {
-      redirect('/adminUser')
-    }
-  }, [isLogged])
 
 
   return (
@@ -65,7 +61,9 @@ export const DbContextProvider = ( { children } ) => {
         passwordHandler,
         userNameHandler,
         onSubmitHandler,
-        logOutHandler
+        logOutHandler,
+        isLogged,
+        categories
       }
     }>
       {children}

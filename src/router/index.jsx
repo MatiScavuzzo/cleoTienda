@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { SignInForm } from '../containers/SignInForm';
-import { UploadForm } from '../containers/UploadForm';
 import { LayoutPublic } from '../layouts/LayoutPublic';
+import { Home } from '../pages/Home';
 
 export const router = createBrowserRouter([
   {
@@ -10,11 +9,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <SignInForm />
-      },
-      {
-        path: '/adminUser',
-        element: <UploadForm />
+        element: <Home />
       }
     ]
   }
