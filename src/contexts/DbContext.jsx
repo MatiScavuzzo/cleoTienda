@@ -4,7 +4,24 @@ import { supabase } from '../../sbs'
 export const DbContext = React.createContext()
 
 export const DbContextProvider = ( { children } ) => {
-  const categories = [ 'BUZOS', 'REMERITAS-TOPS', 'JEANS', 'SHORT-MINIS' ]
+  const categories = [ 
+    {
+      id: 1,
+      name: 'BUZOS'
+    },
+    {
+      id: 2,
+      name: 'REMERITAS-TOPS'
+    },
+    {
+      id: 3,
+      name: 'JEANS'
+    },
+    {
+      id: 4,
+      name: 'SHORT-MINIS'
+    }
+  ]
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [isLogged, setIsLogged] = useState(false)
