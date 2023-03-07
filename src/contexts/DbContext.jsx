@@ -45,6 +45,7 @@ export const DbContextProvider = ( { children } ) => {
   const [productColor5, setProductColor5] = useState('')
   const [productStock, setProductStock] = useState(0)
   const [productDescription, setProductDescription] = useState('')
+  const [categoriesCheckedList, setCategoriesCheckedList] = useState([])
   const [productImages, setProductImages] = useState([])
   const [previewCard, setPreviewCard] = useState(false)
   const [reloadPreview, setReloadPreview] = useState(0)
@@ -140,6 +141,13 @@ export const DbContextProvider = ( { children } ) => {
     setReloadPreview(reloadPreview+1)
   }
 
+  const productCategoriesHandler = (e) => {
+    const categoryValue = e.target.value
+    const isChecked = e.target.checked
+    const filteredList = categoriesCheckedList.filter(category => category !== categoryValue)
+    isChecked ? setCategoriesCheckedList([...categoriesCheckedList, categoryValue]) : setCategoriesCheckedList(filteredList)
+  }
+
   useEffect(() => {
     setPreviewCard(true)
   }, [reloadPreview])
@@ -160,6 +168,7 @@ export const DbContextProvider = ( { children } ) => {
         productColor5Handler,
         productStockHandler,
         productDescriptionHandler,
+        productCategoriesHandler,
         productImagesHandler,
         previewHandler,
         reloadPreviewHandler,
@@ -171,6 +180,7 @@ export const DbContextProvider = ( { children } ) => {
         productColor,
         productStock,
         productDescription,
+        categoriesCheckedList,
         productImages,
         previewCard
       }
